@@ -17,7 +17,7 @@ class Admin::SectionsController < Admin::BaseController
     @section = @site.sections.build params[:section]
     if @section.save
       flash[:notice] = t(:'adva.sections.flash.create.success')
-      redirect_to (params[:commit] == t(:'adva.sections.links.save_and_create_new') ? new_admin_section_url : admin_section_contents_url(@section))
+      redirect_to (params[:commit] == t(:'adva.sections.links.save_and_create_new') ? new_admin_section_url : admin_section_contents_url(:id => @section.id, :cl => content_locale))
     else
       flash.now[:error] = t(:'adva.sections.flash.update.failure')
       render :action => "new"
@@ -30,7 +30,7 @@ class Admin::SectionsController < Admin::BaseController
   def update
     if @section.update_attributes params[:section]
       flash[:notice] = t(:'adva.sections.flash.update.success')
-      redirect_to edit_admin_section_url(@site, @section)
+      redirect_to edit_admin_section_url(@site, @section, :cl => content_locale)
     else
       flash.now[:error] = t(:'adva.sections.flash.update.failure')
       render :action => 'edit'

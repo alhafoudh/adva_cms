@@ -6,9 +6,13 @@
 
 <h2><%= t(:'adva.titles.general_settings') %></h2>
 
+<%= links_to_content_translations(@section) %>
+
 <% f.field_set do %>
   <% column do %>
-    <%= f.text_field :title, :label => true %>
+    <%= label_tag(:content_locale, t(:'adva.common.locale')) + %(<select id="content_locale" name="cl">#{options_for_select I18n.available_locales, Article.locale}</select>) + (@section.try(:single_article_mode) ? '' : f.text_field(:permalink, :label => true)) %>
+
+    <%= f.text_field :title, :value => @section.title, :label => true %>
     <p>
 			<label for="published"><%= t(:'adva.sections.titles.publish') %></label>
 			<span class="hint" for="published">

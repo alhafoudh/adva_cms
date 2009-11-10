@@ -345,6 +345,8 @@ en:
       all: "&mdash; All categories &mdash;"
     contents:
       not_published: not published
+    pages:
+      translation_links: "available translations: {{locales}}"
     articles:      
       optimistic_lock: 
         exception: 
